@@ -19,6 +19,11 @@ class FornaxerApp extends StatelessWidget {
       title: 'Fornaxer',
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
+      darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          useMaterial3: true),
       theme: ThemeData(
           // This is the theme of your application.
           //
@@ -29,6 +34,7 @@ class FornaxerApp extends StatelessWidget {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
+          visualDensity: VisualDensity.adaptivePlatformDensity,
           primarySwatch: Colors.blue,
           useMaterial3: true),
     );
