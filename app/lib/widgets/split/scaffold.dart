@@ -4,7 +4,6 @@ import 'core.dart';
 
 class SplitScaffold extends StatelessWidget {
   final SplitView view;
-  final SplitWindow window;
   final bool expanded;
   final String title;
   final Widget body;
@@ -12,13 +11,13 @@ class SplitScaffold extends StatelessWidget {
   final List<Widget> actions;
   final FloatingActionButton? floatingActionButton;
 
-  SplitScaffold(
+  const SplitScaffold(
       {required this.view,
-      required this.window,
       this.expanded = false,
       required this.title,
       required this.body,
       this.icon,
+      super.key,
       this.actions = const [],
       this.floatingActionButton});
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fornaxer/code/command.dart';
-import 'package:fornaxer/code/console.dart';
+import 'package:fornaxer/code/code.dart';
+import 'package:fornaxer/code/console/view.dart';
 import 'package:fornaxer/widgets/split/core.dart';
 
 class CodePage extends StatelessWidget {
@@ -8,29 +8,34 @@ class CodePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Code'),
-          actions: [
-            IconButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) => const CommandOverlay());
-              },
-              icon: const Icon(Icons.terminal_outlined),
-            )
-          ],
-        ),
-        body: SplitView(
-          axis: Axis.vertical,
-          ratio: 0.75,
-          first: SplitWindow(
-            builder: (context) => Center(child: Text("Code")),
+    return LayoutBuilder(builder: (context, constraints) {
+      final isMobile =
+          constraints.maxWidth < 600 || constraints.maxHeight < 600;
+      return Scaffold(
+          appBar: AppBar(
+            title: const Text('Code'),
+            actions: [
+              if (isMobile)
+                IconButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => const Dialog(
+                            backgroundColor: Colors.transparent,
+                            child: ConsoleView()));
+                  },
+                  icon: const Icon(Icons.terminal_outlined),
+                )
+            ],
           ),
-          second: SplitWindow(
-            builder: (context) => const ConsoleView(),
-          ),
-        ));
+          body: isMobile
+              ? const CodeView()
+              : const SplitView(
+                  axis: Axis.vertical,
+                  ratio: 0.75,
+                  first: CodeView(),
+                  second: ConsoleView(),
+                ));
+    });
   }
 }
