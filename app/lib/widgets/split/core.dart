@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 typedef ExpandCallback = void Function(bool expanded);
 

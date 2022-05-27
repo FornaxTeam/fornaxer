@@ -27,7 +27,7 @@ class _CodeViewState extends State<CodeView> {
         controller: _scrollController,
         child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
               _LineNumberColumn(
@@ -53,23 +53,20 @@ class _LineNumberColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        width: 50,
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Text.rich(
-            TextSpan(
-              style: const TextStyle(
-                  color: Colors.grey, height: 1.5, fontSize: 24),
-              children: List.generate(lines, (i) {
-                final display = i + 1;
-                return TextSpan(
-                  text: i == lines - 1 ? '$display' : '$display\n',
-                );
-              }),
-            ),
-          ),
-        ));
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text.rich(
+        TextSpan(
+          children: List.generate(lines, (i) {
+            final display = i + 1;
+            return TextSpan(
+              text: i == lines - 1 ? '$display' : '$display\n',
+            );
+          }),
+        ),
+        style: const TextStyle(color: Colors.grey, height: 1.5, fontSize: 24),
+      ),
+    );
   }
 }
 
